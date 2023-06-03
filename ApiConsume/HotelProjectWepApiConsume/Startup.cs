@@ -47,6 +47,14 @@ namespace HotelProjectWepApiConsume
             services.AddScoped<ISubscribeDal, EfSubscribeDal>();
             services.AddScoped<ISubscribeService, SubscribeManager>();
 
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("OtelApiCors", opts =>
+                {
+                    opts.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                });
+            });
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -66,7 +74,7 @@ namespace HotelProjectWepApiConsume
             }
 
             app.UseRouting();
-
+            app.UseCors("OtelApiCors");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
