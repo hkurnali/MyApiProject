@@ -46,6 +46,9 @@ namespace HotelProjectWepApiConsume
 
             services.AddScoped<ISubscribeDal, EfSubscribeDal>();
             services.AddScoped<ISubscribeService, SubscribeManager>();
+              
+
+           
 
             services.AddCors(opt =>
             {
